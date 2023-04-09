@@ -34,16 +34,19 @@ class HomePage extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.only(bottom: _bottomPadding),
                 child: ButtonOnHomePage(
+                    buttonType: ButtonType.startButton,
                     backgroundColor: Colors.redAccent.shade400,
                     displayedText: "Rozpocznij rozgrywkę!")),
             Padding(
                 padding: EdgeInsets.only(bottom: _bottomPadding),
                 child: ButtonOnHomePage(
+                    buttonType: ButtonType.boardSizeButton,
                     backgroundColor: Colors.redAccent.shade200,
                     displayedText: "Wybierz rozmiar planszy!")),
             Padding(
                 padding: EdgeInsets.only(bottom: _bottomPadding),
                 child: ButtonOnHomePage(
+                    buttonType: ButtonType.cardSetButton,
                     backgroundColor: Colors.redAccent.shade200,
                     displayedText: "Wybierz zestaw kart!"))
           ],

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'ChooseCardSetWidget.dart';
+
+enum ButtonType { startButton, boardSizeButton, cardSetButton }
 
 class ButtonOnHomePage extends StatelessWidget {
   ButtonOnHomePage(
-      {super.key, required displayedText, required backgroundColor}) {
+      {super.key,
+      required displayedText,
+      required backgroundColor,
+      required buttonType}) {
     _displayedText = displayedText;
     _backgroundColor = backgroundColor;
+    _buttonType = buttonType;
   }
 
+  late final ButtonType _buttonType;
   late final Color _backgroundColor;
   late final String _displayedText;
 
@@ -14,7 +22,28 @@ class ButtonOnHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          //To implement: different behavior depending on the button type
+          switch (_buttonType) {
+            case ButtonType.startButton:
+              {
+                //start game with default settings
+              }
+              break;
+            case ButtonType.boardSizeButton:
+              {
+                //choose size of board
+              }
+              break;
+            case ButtonType.cardSetButton:
+              {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ChooseCardSetWidget().build(context);});
+              }
+              break;
+            default:
+              break;
+          }
         },
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
