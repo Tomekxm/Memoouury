@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memoouury/clickable/ChooseBoardSizeWidget.dart';
 import 'ChooseCardSetWidget.dart';
 
 enum ButtonType { startButton, boardSizeButton, cardSetButton }
@@ -30,7 +31,10 @@ class ButtonOnHomePage extends StatelessWidget {
               break;
             case ButtonType.boardSizeButton:
               {
-                //choose size of board
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ChooseBoardSizeWidget().build(context);});
               }
               break;
             case ButtonType.cardSetButton:

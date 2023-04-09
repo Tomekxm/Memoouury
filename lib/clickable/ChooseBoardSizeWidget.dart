@@ -1,11 +1,9 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-class ChooseCardSetWidget extends StatelessWidget {
-  const ChooseCardSetWidget({super.key});
+class ChooseBoardSizeWidget extends StatelessWidget {
+  const ChooseBoardSizeWidget({super.key});
 
-  static String cardSetDirectory = "assets/cardSets/monsters";
-  static String? _directory = "";
+  static int boardSize = 6;
   static const double _fontSize = 23;
   static const double _padding = 10;
 
@@ -14,7 +12,7 @@ class ChooseCardSetWidget extends StatelessWidget {
     return SimpleDialog(
       title: const Center(
           child: Text(
-        'Wybierz zestaw kart!',
+        'Wybierz rozmiar planszy!',
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.black,
@@ -27,13 +25,13 @@ class ChooseCardSetWidget extends StatelessWidget {
       children: <Widget>[
         SimpleDialogOption(
             onPressed: () {
-              cardSetDirectory = "assets/cardSets/monsters";
+              boardSize = 4;
               Navigator.pop(context);
             },
-            padding: const EdgeInsets.only(bottom: _padding,top: _padding),
+            padding: const EdgeInsets.only(bottom: _padding, top: _padding),
             child: const Center(
               child: Text(
-                'Potwory',
+                '4x4',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
@@ -43,13 +41,13 @@ class ChooseCardSetWidget extends StatelessWidget {
             )),
         SimpleDialogOption(
             onPressed: () {
-              cardSetDirectory = "assets/cardSets/footballers";
+              boardSize = 6;
               Navigator.pop(context);
             },
             padding: const EdgeInsets.only(bottom: _padding),
             child: const Center(
               child: Text(
-                'Piłkarze',
+                '6x6',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
@@ -58,16 +56,13 @@ class ChooseCardSetWidget extends StatelessWidget {
               ),
             )),
         SimpleDialogOption(
-            onPressed: () async {
-              _directory = await FilePicker.platform.getDirectoryPath();
-              if (_directory != null) {
-                cardSetDirectory = _directory!;
-              }
+            onPressed: () {
+              boardSize = 8;
               Navigator.pop(context);
             },
             child: const Center(
               child: Text(
-                'Zaimportuj swój własny zestaw!',
+                '8x8',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
