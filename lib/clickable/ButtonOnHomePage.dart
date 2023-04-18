@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memoouury/clickable/ChooseBoardSizeWidget.dart';
+import 'package:memoouury/pages/GamePage.dart';
 import 'ChooseCardSetWidget.dart';
 
 enum ButtonType { startButton, boardSizeButton, cardSetButton }
@@ -7,9 +8,9 @@ enum ButtonType { startButton, boardSizeButton, cardSetButton }
 class ButtonOnHomePage extends StatelessWidget {
   ButtonOnHomePage(
       {super.key,
-      required displayedText,
-      required backgroundColor,
-      required buttonType}) {
+      required String displayedText,
+      required Color backgroundColor,
+      required ButtonType buttonType}) {
     _displayedText = displayedText;
     _backgroundColor = backgroundColor;
     _buttonType = buttonType;
@@ -26,7 +27,14 @@ class ButtonOnHomePage extends StatelessWidget {
           switch (_buttonType) {
             case ButtonType.startButton:
               {
-                //start game with default settings
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GamePage(
+                          boardSize: ChooseBoardSizeWidget.boardSize,
+                          cardSetDirectory:
+                              ChooseCardSetWidget.cardSetDirectory)),
+                );
               }
               break;
             case ButtonType.boardSizeButton:
@@ -34,7 +42,8 @@ class ButtonOnHomePage extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return const ChooseBoardSizeWidget().build(context);});
+                      return const ChooseBoardSizeWidget().build(context);
+                    });
               }
               break;
             case ButtonType.cardSetButton:
@@ -42,7 +51,8 @@ class ButtonOnHomePage extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return const ChooseCardSetWidget().build(context);});
+                      return const ChooseCardSetWidget().build(context);
+                    });
               }
               break;
             default:

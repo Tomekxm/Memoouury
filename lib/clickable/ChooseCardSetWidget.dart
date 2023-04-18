@@ -30,7 +30,7 @@ class ChooseCardSetWidget extends StatelessWidget {
               cardSetDirectory = "assets/cardSets/monsters";
               Navigator.pop(context);
             },
-            padding: const EdgeInsets.only(bottom: _padding,top: _padding),
+            padding: const EdgeInsets.only(bottom: _padding, top: _padding),
             child: const Center(
               child: Text(
                 'Potwory',

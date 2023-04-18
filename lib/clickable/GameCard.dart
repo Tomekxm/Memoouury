@@ -1,14 +1,15 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 
-class GameCard extends StatelessWidget{
+class GameCard extends StatelessWidget {
   const GameCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0.0,
-      margin: const EdgeInsets.only(left: 32.0, right: 32.0, top: 20.0, bottom: 0.0),
+      margin:
+          const EdgeInsets.only(left: 1.0, right: 1.0, top: 1.0, bottom: 0.0),
       color: const Color(0x00000000),
       child: FlipCard(
         direction: FlipDirection.HORIZONTAL,
@@ -25,9 +26,7 @@ class GameCard extends StatelessWidget{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Front', style: Theme.of(context).textTheme.headline1),
-              Text('Click here to flip back',
-                  style: Theme.of(context).textTheme.bodyText1),
+              Image.asset('assets/cardSets/cardReverse.jpg', fit: BoxFit.cover)
             ],
           ),
         ),
@@ -39,15 +38,11 @@ class GameCard extends StatelessWidget{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                'assets/cardSets/cardReverse.jpg',
-                fit: BoxFit.fill
-              )
+              Image.asset('assets/cardSets/cardReverse.jpg', fit: BoxFit.cover)
             ],
           ),
         ),
       ),
     );
   }
-  
 }
