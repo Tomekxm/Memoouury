@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:memoouury/Pages/HomePage.dart';
-
 import '../clickable/GameCard.dart';
+import '../helpers/SimpleAssetPathProvider.dart';
 
 class GamePage extends StatelessWidget {
   GamePage(
       {super.key, required int boardSize, required String cardSetDirectory}) {
     _boardSize = boardSize;
     _cardSetDirectory = cardSetDirectory;
+    _assetPathProvider = SimpleAssetPathProvider(_cardSetDirectory, _boardSize);
   }
 
+  late final SimpleAssetPathProvider _assetPathProvider;
   static const double _fontSize = 20;
   late final int _boardSize;
   late final String _cardSetDirectory;
+  late List<Widget> _gameCards = [];
 
   @override
   Widget build(BuildContext context) {
@@ -72,16 +75,19 @@ class GamePage extends StatelessWidget {
       }
       rowsToReturn.add(Row(children: cardsToReturn));
     }
+
     return rowsToReturn;
   }
 
   Widget _buildGameCard(BuildContext context) {
+    Widget card = GameCard(assetPath: _assetPathProvider.provideAssetPath(),).build(context);
+    _gameCards.add(card);
     return Expanded(
       child: Container(
-        color: const Color(0xffffffff), // Red
+        color: const Color(0xffffffff),
         height: MediaQuery.of(context).size.height / (_boardSize + 1),
         alignment: Alignment.center,
-        child: const GameCard().build(context),
+        child: card,
       ),
     );
   }

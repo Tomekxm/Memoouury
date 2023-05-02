@@ -5,9 +5,9 @@ class ChooseCardSetWidget extends StatelessWidget {
   const ChooseCardSetWidget({super.key});
 
   static String cardSetDirectory = "assets/cardSets/monsters";
-  static String? _directory = "";
   static const double _fontSize = 23;
   static const double _padding = 10;
+  // static String? _directory = "";
 
   @override
   Widget build(BuildContext context) {
@@ -58,23 +58,40 @@ class ChooseCardSetWidget extends StatelessWidget {
               ),
             )),
         SimpleDialogOption(
-            onPressed: () async {
-              _directory = await FilePicker.platform.getDirectoryPath();
-              if (_directory != null) {
-                cardSetDirectory = _directory!;
-              }
+            onPressed: () {
+              cardSetDirectory = "assets/cardSets/cartoonsCharacters";
               Navigator.pop(context);
             },
+            padding: const EdgeInsets.only(bottom: _padding),
             child: const Center(
               child: Text(
-                'Zaimportuj swój własny zestaw!',
+                'Postacie z bajek',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: _fontSize,
                 ),
               ),
-            ))
+            )),
+        // TODO - picking own pictures
+        // SimpleDialogOption(
+        //     onPressed: () async {
+        //       _directory = await FilePicker.platform.getDirectoryPath();
+        //       if (_directory != null) {
+        //         cardSetDirectory = _directory!;
+        //       }
+        //       Navigator.pop(context);
+        //     },
+        //     child: const Center(
+        //       child: Text(
+        //         'Zaimportuj swój własny zestaw!',
+        //         textAlign: TextAlign.center,
+        //         style: TextStyle(
+        //           color: Colors.black,
+        //           fontSize: _fontSize,
+        //         ),
+        //       ),
+        //     ))
       ],
     );
   }

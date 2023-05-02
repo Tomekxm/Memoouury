@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memoouury/clickable/ChooseBoardSizeWidget.dart';
 import 'package:memoouury/pages/GamePage.dart';
-import 'ChooseCardSetWidget.dart';
+import '../clickable/ChooseCardSetWidget.dart';
 
 enum ButtonType { startButton, boardSizeButton, cardSetButton }
 

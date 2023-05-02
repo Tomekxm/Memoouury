@@ -1,8 +1,12 @@
 import 'package:flip_card/flip_card.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 
 class GameCard extends StatelessWidget {
-  const GameCard({super.key});
+  GameCard({super.key, required this.assetPath});
+
+  final String assetPath;
+  final FlipCardController flipCardController = FlipCardController();
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +16,12 @@ class GameCard extends StatelessWidget {
           const EdgeInsets.only(left: 1.0, right: 1.0, top: 1.0, bottom: 0.0),
       color: const Color(0x00000000),
       child: FlipCard(
+        fill: Fill.fillFront,
+        controller: flipCardController,
         direction: FlipDirection.HORIZONTAL,
         side: CardSide.FRONT,
         speed: 1000,
-        onFlipDone: (status) {
-          print(status);
-        },
+        onFlipDone: (status) {},
         front: Container(
           decoration: const BoxDecoration(
             color: Color(0xFF006666),
@@ -38,7 +42,7 @@ class GameCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset('assets/cardSets/cardReverse.jpg', fit: BoxFit.cover)
+              Image.asset(assetPath, fit: BoxFit.cover)
             ],
           ),
         ),
