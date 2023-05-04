@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class GameCard extends StatelessWidget {
   GameCard({super.key, required this.assetPath});
 
-  final String assetPath;
+  String assetPath;
   final FlipCardController flipCardController = FlipCardController();
 
   @override

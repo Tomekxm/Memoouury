@@ -1,28 +1,33 @@
 class SimpleAssetPathProvider {
   late final String _assetsDirectory;
   late final int _boardSize;
-  late final List<String> _cardsPaths;
+  late List<String> _cardsPaths;
 
   SimpleAssetPathProvider(this._assetsDirectory, this._boardSize) {
     if (_assetsDirectory == "assets/cardSets/monsters") {
       _monsters.shuffle();
-      _cardsPaths = _monsters.take(_boardSize) as List<String>;
+      _cardsPaths = _monsters.take(_boardSize*_boardSize~/2).toList();
     } else if (_assetsDirectory == "assets/cardSets/footballers") {
       _footballers.shuffle();
-      _cardsPaths = _footballers.take(_boardSize) as List<String>;
+      _cardsPaths = _footballers.take(_boardSize*_boardSize~/2).toList();
     } else if (_assetsDirectory == "assets/cardSets/cartoonsCharacters") {
       _cartoonsCharacters.shuffle();
-      _cardsPaths = _cartoonsCharacters.take(_boardSize) as List<String>;
+      _cardsPaths = _cartoonsCharacters.take(_boardSize*_boardSize~/2).toList();
     } else {
-      throw "Unexpected problem with cards has occured!";
+      throw "Unexpected problem with cards has occurred!";
     }
     _cardsPaths = _cardsPaths + _cardsPaths;
     _cardsPaths.shuffle();
   }
 
-  @override
   String provideAssetPath() {
-    return _cardsPaths.take(1).first;
+    String toReturnPath;
+    if (_cardsPaths.isNotEmpty) {
+      toReturnPath = _cardsPaths.removeLast();
+    } else {
+      throw "Unexpected problem with cards has occurred!";
+    }
+    return toReturnPath;
   }
 
   final List<String> _monsters = [

@@ -11,11 +11,11 @@ class GamePage extends StatelessWidget {
     _assetPathProvider = SimpleAssetPathProvider(_cardSetDirectory, _boardSize);
   }
 
-  late final SimpleAssetPathProvider _assetPathProvider;
+  late SimpleAssetPathProvider _assetPathProvider;
   static const double _fontSize = 20;
   late final int _boardSize;
   late final String _cardSetDirectory;
-  late List<Widget> _gameCards = [];
+  late List<GameCard> _gameCards = [];
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +66,9 @@ class GamePage extends StatelessWidget {
 
   List<Widget> _buildGameBoard(BuildContext context) {
     List<Widget> rowsToReturn = <Widget>[];
-    List<Widget> cardsToReturn = <Widget>[];
 
     for (int i = 0; i < _boardSize; i++) {
-      cardsToReturn.clear();
+      List<Widget> cardsToReturn = <Widget>[];
       for (int k = 0; k < _boardSize; k++) {
         cardsToReturn.add(_buildGameCard(context));
       }
@@ -80,7 +79,7 @@ class GamePage extends StatelessWidget {
   }
 
   Widget _buildGameCard(BuildContext context) {
-    Widget card = GameCard(assetPath: _assetPathProvider.provideAssetPath(),).build(context);
+    GameCard card = GameCard(assetPath: _assetPathProvider.provideAssetPath());
     _gameCards.add(card);
     return Expanded(
       child: Container(
