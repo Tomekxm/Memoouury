@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   file_picker: ^5.2.10
   flip_card: ^0.7.0
+  quickalert: ^1.0.1
 
 dev_dependencies:
   flutter_test:
