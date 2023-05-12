@@ -15,7 +15,6 @@ class GamePage extends StatelessWidget {
 
   late SimpleAssetPathProvider _assetPathProvider;
   int _clicks = 0;
-  bool _absorbing = false;
   static const double _fontSize = 20;
   late final int _boardSize;
   late final String _cardSetDirectory;
@@ -23,52 +22,49 @@ class GamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-        absorbing: _absorbing,
-        child: Scaffold(
-            body: SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(),
-                child: IntrinsicHeight(
-                    child: Column(children: _buildGameBoard(context))),
+    return Scaffold(
+        body: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(),
+            child: IntrinsicHeight(
+                child: Column(children: _buildGameBoard(context))),
+          ),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FloatingActionButton.extended(
+                heroTag: "return",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                label:
+                    const Text('Powrót', style: TextStyle(fontSize: _fontSize)),
+                icon: const Icon(Icons.keyboard_return),
               ),
-            ),
-            bottomNavigationBar: BottomAppBar(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  FloatingActionButton.extended(
-                    heroTag: "return",
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
-                      );
-                    },
-                    label: const Text('Powrót',
-                        style: TextStyle(fontSize: _fontSize)),
-                    icon: const Icon(Icons.keyboard_return),
-                  ),
-                  const Text("    "),
-                  FloatingActionButton.extended(
-                    heroTag: "restart",
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GamePage(
-                                    boardSize: _boardSize,
-                                    cardSetDirectory: _cardSetDirectory,
-                                  )));
-                    },
-                    label: const Text('Restart gry',
-                        style: TextStyle(fontSize: _fontSize)),
-                    icon: const Icon(Icons.refresh),
-                  ),
-                ],
+              const Text("    "),
+              FloatingActionButton.extended(
+                heroTag: "restart",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GamePage(
+                                boardSize: _boardSize,
+                                cardSetDirectory: _cardSetDirectory,
+                              )));
+                },
+                label: const Text('Restart gry',
+                    style: TextStyle(fontSize: _fontSize)),
+                icon: const Icon(Icons.refresh),
               ),
-            )));
+            ],
+          ),
+        ));
   }
 
   List<Widget> _buildGameBoard(BuildContext context) {
@@ -114,7 +110,6 @@ class GamePage extends StatelessWidget {
           showInfoDialog(context, _gameCards.length ~/ 2);
         }
       } else {
-        _absorbing = true;
         Future.delayed(const Duration(milliseconds: 150), () {
           flippedCards.first.flipCardController.toggleCard();
           flippedCards.last.flipCardController.toggleCard();
