@@ -67,6 +67,7 @@ flutter:
      - assets/cardSets/
      - assets/cardSets/monsters/
      - assets/cardSets/footballers/
+     - assets/cardSets/cartoonsCharacters/
      # - assets/cardSets/ownSet/
      - assets/cardSets/cardReverse.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
