@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memoouury/clickable/ButtonOnHomePage.dart';
+import 'package:memoouury/pages/ButtonOnHomePage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
